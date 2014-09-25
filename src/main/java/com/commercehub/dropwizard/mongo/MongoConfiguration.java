@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.commercehub.dropwizard.mongo.config;
+package com.commercehub.dropwizard.mongo;
 
 import io.dropwizard.Configuration;
 

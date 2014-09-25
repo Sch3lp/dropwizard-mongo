@@ -14,27 +14,43 @@
  * limitations under the License.
  */
 
-package com.commercehub.dropwizard.mongo.config;
+package com.commercehub.dropwizard.mongo;
 
-import com.mongodb.MongoClient;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mongodb.MongoClientURI;
-import io.dropwizard.lifecycle.Managed;
 
+import javax.validation.constraints.NotNull;
 import java.net.UnknownHostException;
 
-public class ManagedMongoClient extends MongoClient implements Managed {
+public class MongoClientFactory {
 
-    public ManagedMongoClient(MongoClientURI uri) throws UnknownHostException {
-        super(uri);
+    @NotNull
+    private MongoClientURI uri;
+
+    private String dbName;
+
+    public ManagedMongoClient build() throws UnknownHostException {
+        return new ManagedMongoClient(uri);
     }
 
-    @Override
-    public void start() throws Exception {
+    @JsonProperty
+    public MongoClientURI getUri() {
+        return uri;
     }
 
-    @Override
-    public void stop() throws Exception {
-        close();
+    @JsonProperty
+    public void setUri(MongoClientURI uri) {
+        this.uri = uri;
+    }
+
+    @JsonProperty
+    public String getDbName() {
+        return dbName;
+    }
+
+    @JsonProperty
+    public void setDbName(String dbName) {
+        this.dbName = dbName;
     }
 
 }
