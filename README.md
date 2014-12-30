@@ -13,7 +13,6 @@ Gradle:
 
 ```groovy
 repositories {
-    mavenCentral()
     jcenter() // for dropwizard-mongo
 }
 
