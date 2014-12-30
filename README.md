@@ -12,18 +12,56 @@ First, add a dependency to your build file.  Releases are published to
 Gradle:
 
 ```groovy
+repositories {
+    mavenCentral()
+    jcenter() // for dropwizard-mongo
+}
+
 dependencies {
-    compile "com.commercehub.dropwizard:dropwizard-mongo:1.0.0"
+    compile "com.commercehub.dropwizard:dropwizard-mongo:2.0.0"
 }
 ```
 
 Maven:
 
+settings.xml:
+```xml
+<profiles>
+    <profile>
+        <repositories>
+            <repository>
+                <snapshots>
+                    <enabled>false</enabled>
+                </snapshots>
+                <id>central</id>
+                <name>bintray</name>
+                <url>http://jcenter.bintray.com</url>
+            </repository>
+        </repositories>
+        <pluginRepositories>
+            <pluginRepository>
+                <snapshots>
+                    <enabled>false</enabled>
+                </snapshots>
+                <id>central</id>
+                <name>bintray-plugins</name>
+                <url>http://jcenter.bintray.com</url>
+            </pluginRepository>
+        </pluginRepositories>
+        <id>bintray</id>
+    </profile>
+</profiles>
+<activeProfiles>
+    <activeProfile>bintray</activeProfile>
+</activeProfiles>
+```
+
+pom.xml:
 ```xml
 <dependency>
   <groupId>com.commercehub.dropwizard</groupId>
   <artifactId>dropwizard-mongo</artifactId>
-  <version>1.0.0</version>
+  <version>2.0.0</version>
 </dependency>
 ```
 
